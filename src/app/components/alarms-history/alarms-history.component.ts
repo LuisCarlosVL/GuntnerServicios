@@ -3,6 +3,7 @@ import {  Router } from '@angular/router';
 import { SummaryResolver } from '@angular/compiler';
 import { AlarmHistoryService} from '../../services/alarm-history.service';
 import {  Alarms } from '../../models/alarms';
+import { saveAs } from 'file-saver'
 
 
 declare function unescape(s:string): string;
@@ -54,7 +55,16 @@ console.log(data)
 
 
 
+// Funcion para guardar en ANGULAR
 
+TabletoExcel(){
+  var blob = new Blob([document.getElementById('testTable1').innerHTML], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+});
+saveAs(blob, "Report.xls");
+}
+
+// Funcion para guardar con JS
   tableToExcel = (function() {
     
     var uri = 'data:application/vnd.ms-excel;base64,'
